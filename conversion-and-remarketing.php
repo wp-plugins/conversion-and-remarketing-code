@@ -1,8 +1,8 @@
-<?php 
+<?php
 /**
  * Plugin Name: Conversion And Remarketing Code
  * Description: Easily place tracking code in the header or footer of your entire site or individual posts/pages.
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: neeaagh
  * Author URI: http://drivenlocal.com
  * License: GPL2
@@ -12,7 +12,7 @@
 	Copyright 2015
 
 	This program is free software; you can redistribute it and/or modify
-	it under the terms of the GNU General Public License, version 2, as 
+	it under the terms of the GNU General Public License, version 2, as
 	published by the Free Software Foundation.
 
 	This program is distributed in the hope that it will be useful,
@@ -55,11 +55,12 @@ add_action( 'wp_head', 'add_script_to_head' );
 add_action( 'wp_footer', 'add_script_to_footer' );
 
 function add_script_meta_box() {
-    $screens = array( 'post', 'page' );
+    $screens = get_post_types( array( 'public' => true, '_builtin' => false ) );
+    array_push( $screens, 'post', 'page' );
 
 	foreach ( $screens as $screen ) {
 
-		add_meta_box( 
+		add_meta_box(
 	        'conversion-and-remarketing-meta-box',
 	        __( 'Conversion And Remarketing Code' ),
 	        'render_script_meta_box',
@@ -113,14 +114,14 @@ function sitewide_script_page() {
 	<div class="wrap">
 		<h2>Remarketing Code</h2>
 		<p class="description">
-			Code entered here will show up in the &lt;head&gt; or footer of every page. 
-			This is ideal for embedding remarketing and analytics tags. If you'd like to 
+			Code entered here will show up in the &lt;head&gt; or footer of every page.
+			This is ideal for embedding remarketing and analytics tags. If you'd like to
 			embed on specific pages or posts, you must do so from the post's edit page.
 		</p>
 	</div>
 
 	<form method="post" action="options.php">
-    	<?php 
+    	<?php
     	settings_fields( 'sitewide-script-settings-group' );
     	do_settings_sections( 'sitewide-script-settings-group' );
 		$header_code = esc_attr( get_option( 'sitewide-script-header-text' ) );
@@ -133,7 +134,7 @@ function sitewide_script_page() {
 		echo '<label for="sitewide-script-footer-text">' . _e( "Code to insert in footer", 'example' ) . '</label>';
 	    echo '<textarea class="widefat" name="sitewide-script-footer-text" id="sitewide-script-footer-text">' . $footer_code . '</textarea>';
 	    echo '</p>';
-		submit_button(); ?>		
+		submit_button(); ?>
 	</form>
 	<?
 }

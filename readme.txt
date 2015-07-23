@@ -2,8 +2,8 @@
 Contributors: neeaagh
 Tags: conversion code, remarketing, adwords, facebook ads, facebook remarketing, tracking code, analytics
 Requires at least: 2.7
-Tested up to: 4.1
-Stable tag: 4.3
+Tested up to: 4.2
+Stable tag: trunk
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -19,3 +19,8 @@ Easily place tracking code in the header or footer of your entire site or indivi
 1. Activate the plugin through the 'Plugins' menu in WordPress
 1. For embedding code on every page, go to Settings->Remarketing Code.
 1. For embedding on individual pages, go to the "Conversion and Remarketing Code" section when editing a page/post.
+
+== Changelog ==
+
+1.0.1
+- Support for custom post types and WooCommerce products.
